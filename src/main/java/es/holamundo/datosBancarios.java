@@ -10,26 +10,27 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "datosBancarios")
+
+@WebServlet("/datosBancarios")
 public class datosBancarios extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         try {
-            if (request.getSession(false) != null){
+            HttpSession sesion = request.getSession(true);
+            if (request.getSession(false) != null) {
                 request.getSession().invalidate();
+            } else {
+                String Cuenta = request.getParameter("Cuenta");
+                sesion.setAttribute("Cuenta", Cuenta);
+                getServletContext().getRequestDispatcher("Resumen.jsp").forward(request,response);
+
             }
-            HttpSession laSesion = request.getSession(true);
-            laSesion.setAttribute();
-
-
-        } catch (Exception e){
-            out.println("Se ha producido un error");
+        } catch (Exception e) {
+            out.println("Se produce una excepción <br />");
+            out.println(e.getMessage());
         }
-
     }
-}
+            protected void doGet (HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException {
+            }
+        }

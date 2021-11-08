@@ -7,14 +7,12 @@
     <title>Title</title>
 </head>
 <body>
-<form name="Formulario_bancario" action="DatosBancarios.jsp">
+<form name="Formulario_bancario" action="datosBancarios">
     <label>Cuenta corriente
-        <input type="text" name="Datos2" maxlength="24" size="70"/>
+        <input type="text" name="Cuenta" maxlength="24" size="70"/>
     </label>
     <br/>
-    <form method="post" action="DatosProfesionales.jsp">
-        <input type="submit"/>
-    </form>
+        <input type="submit" value="Grabar informacion e ir al resumen final"/>
 </form>
 <ul>
 <%
@@ -38,6 +36,7 @@
     for(String elemTemp: ListaElementos){
         out.println("<li>" + elemTemp + "</li>");
     }
+
 %>
 </ul>
 

@@ -7,22 +7,21 @@
     <title>Datos Profesionales</title>
 </head>
 <body>
-<form name="Formulario_profesional" action="DatosProfesionales.jsp">
-    <select name="Datos3">
+<form name="Formulario_profesional" action="DatosProfesionales" method="post">
+    <select name="Espec">
         <option>Marketing</option>
         <option>Finanzas</option>
         <option>investigacion</option>
     </select>
     <br/><br/>
     <label>Salario
-        <input name="Datos3" type="number" step="0.01"/>
     </label>
+    <input name="Salario" type="number" step="0.01"/>
     <br/><br/>
     Comentarios
-    <textarea name="Datos3"></textarea>
-    <form method="post" action="DatosBancarios.jsp">
-        <input type="submit"/>
-    </form>
+    <textarea name="AreaText"></textarea>
+        <input type="submit" value="Grabar informacion e ir al paso 3 - Datos bancarios"/>
+
 </form>
 <h2>Carro de la compra </h2>
 

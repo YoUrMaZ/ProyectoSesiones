@@ -1,13 +1,32 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Datos Profesionales</title>
 </head>
 <body>
+<%
+    HttpSession sesion = request.getSession(true);
+%>
+<a href="../../../../ProyectoSesiones/src/main/webapp/DatosPersonales.jsp">
+    <input type="button" value="1"/>
+</a>
+<a href="DatosProfesionales.jsp">
+    <input type="button" value="2"/>
+</a>
+<a href="../../../../ProyectoSesiones/src/main/webapp/DatosBancarios.jsp">
+    <input type="button" value="3"/>
+</a>
+<a href="Resumen.jsp">
+    <input type="button" value="Resumen"/>
+</a>
+<br/><br/>
 <form name="Formulario_profesional" action="DatosProfesionales" method="post">
+    <fieldset>Datos Profesionales<hr/>
+
     <select name="Espec">
         <option>Marketing</option>
         <option>Finanzas</option>
@@ -16,41 +35,15 @@
     <br/><br/>
     <label>Salario
     </label>
-    <input name="Salario" type="number" step="0.01"/>
+    <input name="Salario" type="number" value="<%String Genero = (String) sesion.getAttribute("Genero"); out.println(Genero);%>" step="0.01"/>
     <br/><br/>
     Comentarios
     <textarea name="AreaText"></textarea>
+        <br/><br/>
         <input type="submit" value="Grabar informacion e ir al paso 3 - Datos bancarios"/>
-
+    </fieldset>
 </form>
-<h2>Carro de la compra </h2>
 
-<ul>
-    <%
-        List<String> ListaElementos = (List<String>) session.getAttribute("misElementos3");
-
-        if (ListaElementos == null){
-            ListaElementos = new ArrayList<String>();
-            session.setAttribute("misElementos3", ListaElementos);
-        }
-
-        String[] elementos = request.getParameterValues("Datos3");
-
-
-        if (elementos != null){
-            for (String elementoTemp: elementos){
-                //out.println("<li>" + elementoTemp + "</li>");
-
-                ListaElementos.add(elementoTemp);
-            }
-        }
-        for(String elemTemp: ListaElementos){
-            out.println("<li>" + elemTemp + "</li>");
-        }
-    %>
-
-
-</ul>
 
 </body>
 </html>

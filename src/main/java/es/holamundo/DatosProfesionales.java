@@ -13,22 +13,23 @@ import java.io.PrintWriter;
 @WebServlet("/DatosProfesionales")
 public class DatosProfesionales extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        try {
-            HttpSession sesion = request.getSession(true);
-            if (request.getSession(false) != null) {
-                request.getSession().invalidate();
-            } else {
-                String Espec = request.getParameter("Espec");
-                sesion.setAttribute("Espec", Espec);
-                getServletContext().getRequestDispatcher("DatosBancarios.jsp").forward(request,response);
+        HttpSession sesion = request.getSession(true);
 
-            }
-        } catch (Exception e) {
-            out.println("Se produce una excepción <br />");
-            out.println(e.getMessage());
-        }
+        String Espec = request.getParameter("Espec");
+        sesion.setAttribute("Espec", Espec);
+
+        String Salario = request.getParameter("Salario");
+        sesion.setAttribute("Salario", Salario);
+
+        String AreaText = request.getParameter("AreaText");
+        sesion.setAttribute("AreaText", AreaText);
+
+        String rutaContext = request.getContextPath();
+        String destino = "/DatosBancarios.jsp";
+        response.sendRedirect(rutaContext + destino);
+
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

@@ -17,7 +17,7 @@ public class DatosPersonales extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+
             HttpSession sesion = request.getSession(true);
 
                 String Nombre = request.getParameter("Nombre");
@@ -38,8 +38,9 @@ public class DatosPersonales extends HttpServlet {
                 String Nacionalidad = request.getParameter("Nacionalidad");
                 sesion.setAttribute("Nacionalidad", Nacionalidad);
 
-                getServletContext().getRequestDispatcher("/sesiones/DatosProfesionales.jsp").forward(request, response);
-
+                String rutaContext = request.getContextPath();
+                String destino = "/DatosProfesionales.jsp";
+                response.sendRedirect(rutaContext + destino);
 
     }
 }
